@@ -203,7 +203,7 @@ const windows_src_files = [_][]const u8{
     "src/haptic/windows/SDL_dinputhaptic.c",
     "src/haptic/windows/SDL_windowshaptic.c",
     "src/haptic/windows/SDL_xinputhaptic.c",
-    "src/hidapi/windows/hid.c",
+    // "src/hidapi/windows/hid.c",
     "src/joystick/windows/SDL_dinputjoystick.c",
     "src/joystick/windows/SDL_rawinputjoystick.c",
     // This can be enabled when Zig updates to the next mingw-w64 release,
@@ -215,7 +215,7 @@ const windows_src_files = [_][]const u8{
 
     "src/loadso/windows/SDL_sysloadso.c",
     "src/locale/windows/SDL_syslocale.c",
-    "src/main/windows/SDL_windows_main.c",
+    // "src/main/windows/SDL_windows_main.c",
     "src/misc/windows/SDL_sysurl.c",
     "src/power/windows/SDL_syspower.c",
     "src/sensor/windows/SDL_windowssensor.c",
