@@ -5,19 +5,23 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
     const t = target.result;
 
-    const lib = b.addStaticLibrary(.{
+    const lib = b.addSharedLibrary(.{
         .name = "SDL2",
         .target = target,
         .optimize = optimize,
     });
 
     lib.addIncludePath(.{ .path = "include" });
-    lib.addCSourceFiles(.{ .files = &generic_src_files });
+    lib.addCSourceFiles(.{ .files = &generic_src_files, .flags = &.{"-fvisibility=hidden"} });
     lib.defineCMacro("SDL_USE_BUILTIN_OPENGL_DEFINITIONS", "1");
+    lib.defineCMacro("DLL_EXPORT", "1");
     lib.linkLibC();
     switch (t.os.tag) {
         .windows => {
-            lib.addCSourceFiles(.{ .files = &windows_src_files });
+            lib.addCSourceFiles(.{
+                .files = &windows_src_files,
+                .flags = &.{"-fvisibility=hidden"},
+            });
             lib.linkSystemLibrary("setupapi");
             lib.linkSystemLibrary("winmm");
             lib.linkSystemLibrary("gdi32");
@@ -203,7 +207,7 @@ const windows_src_files = [_][]const u8{
     "src/haptic/windows/SDL_dinputhaptic.c",
     "src/haptic/windows/SDL_windowshaptic.c",
     "src/haptic/windows/SDL_xinputhaptic.c",
-    "src/hidapi/windows/hid.c",
+    // "src/hidapi/windows/hid.c",
     "src/joystick/windows/SDL_dinputjoystick.c",
     "src/joystick/windows/SDL_rawinputjoystick.c",
     // This can be enabled when Zig updates to the next mingw-w64 release,
@@ -215,7 +219,7 @@ const windows_src_files = [_][]const u8{
 
     "src/loadso/windows/SDL_sysloadso.c",
     "src/locale/windows/SDL_syslocale.c",
-    "src/main/windows/SDL_windows_main.c",
+    // "src/main/windows/SDL_windows_main.c",
     "src/misc/windows/SDL_sysurl.c",
     "src/power/windows/SDL_syspower.c",
     "src/sensor/windows/SDL_windowssensor.c",
