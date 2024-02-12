@@ -192,12 +192,14 @@ const generic_src_files = [_][]const u8{
     "src/joystick/hidapi/SDL_hidapi_shield.c",
     "src/joystick/hidapi/SDL_hidapi_stadia.c",
     "src/joystick/hidapi/SDL_hidapi_steam.c",
+    "src/joystick/hidapi/SDL_hidapi_steamdeck.c",
     "src/joystick/hidapi/SDL_hidapi_switch.c",
     "src/joystick/hidapi/SDL_hidapi_wii.c",
     "src/joystick/hidapi/SDL_hidapi_xbox360.c",
     "src/joystick/hidapi/SDL_hidapi_xbox360w.c",
     "src/joystick/hidapi/SDL_hidapi_xboxone.c",
     "src/joystick/hidapi/SDL_hidapijoystick.c",
+    "src/joystick/SDL_steam_virtual_gamepad.c",
 };
 
 const windows_src_files = [_][]const u8{
@@ -209,13 +211,9 @@ const windows_src_files = [_][]const u8{
     "src/haptic/windows/SDL_dinputhaptic.c",
     "src/haptic/windows/SDL_windowshaptic.c",
     "src/haptic/windows/SDL_xinputhaptic.c",
-    // "src/hidapi/windows/hid.c",
     "src/joystick/windows/SDL_dinputjoystick.c",
     "src/joystick/windows/SDL_rawinputjoystick.c",
-    // This can be enabled when Zig updates to the next mingw-w64 release,
-    // which will make the headers gain `windows.gaming.input.h`.
-    // Also revert the patch 2c79fd8fd04f1e5045cbe5978943b0aea7593110.
-    //"src/joystick/windows/SDL_windows_gaming_input.c",
+    "src/joystick/windows/SDL_windows_gaming_input.c",
     "src/joystick/windows/SDL_windowsjoystick.c",
     "src/joystick/windows/SDL_xinputjoystick.c",
 
