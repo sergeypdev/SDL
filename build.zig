@@ -163,7 +163,9 @@ const generic_src_files = [_][]const u8{
     "src/video/SDL_video.c",
     "src/video/SDL_vulkan_utils.c",
     "src/video/SDL_yuv.c",
-    "src/video/yuv2rgb/yuv_rgb.c",
+    "src/video/yuv2rgb/yuv_rgb_lsx.c",
+    "src/video/yuv2rgb/yuv_rgb_sse.c",
+    "src/video/yuv2rgb/yuv_rgb_std.c",
 
     "src/video/dummy/SDL_nullevents.c",
     "src/video/dummy/SDL_nullframebuffer.c",
