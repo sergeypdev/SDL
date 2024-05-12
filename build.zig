@@ -52,12 +52,14 @@ pub fn build(b: *std.Build) void {
             const config_header = b.addConfigHeader(.{
                 .style = .{ .cmake = .{ .path = "include/SDL_config.h.cmake" } },
                 .include_path = "SDL2/SDL_config.h",
-            }, .{});
+            }, .{
+                .SDL_THREAD_PTHREAD = "1",
+            });
             lib.addConfigHeader(config_header);
-            lib.installConfigHeader(config_header, .{});
+            lib.installConfigHeader(config_header);
         },
     }
-    lib.installHeadersDirectory("include", "SDL2");
+    lib.installHeadersDirectory(.{ .path = "include" }, "SDL2", .{});
     b.installArtifact(lib);
 }
 
