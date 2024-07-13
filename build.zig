@@ -11,7 +11,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    lib.addIncludePath(.{ .path = "include" });
+    lib.addIncludePath(.{ .src_path = .{ .owner = b, .sub_path = "include" } });
     lib.addCSourceFiles(.{ .files = &generic_src_files, .flags = &.{"-fvisibility=hidden"} });
     lib.defineCMacro("SDL_USE_BUILTIN_OPENGL_DEFINITIONS", "1");
     lib.defineCMacro("DLL_EXPORT", "1");
@@ -50,7 +50,7 @@ pub fn build(b: *std.Build) void {
         },
         else => {
             const config_header = b.addConfigHeader(.{
-                .style = .{ .cmake = .{ .path = "include/SDL_config.h.cmake" } },
+                .style = .{ .cmake = .{ .src_path = .{ .owner = b, .sub_path = "include/SDL_config.h.cmake" } } },
                 .include_path = "SDL2/SDL_config.h",
             }, .{
                 .SDL_THREAD_PTHREAD = "1",
@@ -59,7 +59,7 @@ pub fn build(b: *std.Build) void {
             lib.installConfigHeader(config_header);
         },
     }
-    lib.installHeadersDirectory(.{ .path = "include" }, "SDL2", .{});
+    lib.installHeadersDirectory(.{ .src_path = .{ .owner = b, .sub_path = "include" } }, "SDL2", .{});
     b.installArtifact(lib);
 }
 
